@@ -1,0 +1,18 @@
+<div class="flex flex-wrap justify-center items-center gap-4 p-4 bg-gray-800 shadow-xl">
+@for(item of listaDispositivos; track $index){
+<div class="card w-96 bg-gray-600 shadow-xl min-w-97 max-h-96">
+    <figure><img src="{{ item.Imagen }}" alt="{{ item.Nombre }}" class="w-70 h-60"></figure>
+    <div class="card-body">
+        <h2 class="card-title text-center">
+            {{ item.Nombre }}
+        </h2>
+        <div class="card-actions justify-end">
+            @if(item.Estado == "DISPONIBLE"){
+              <div class="badge badge-success">{{ item.Estado }}</div>
+            }
+            <div class="badge badge-outline">{{ item.NumeroSerie }}</div>
+        </div>
+    </div>
+</div>
+}
+</div>
