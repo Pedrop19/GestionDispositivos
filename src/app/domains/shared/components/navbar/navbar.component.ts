@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,4 +10,9 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
+  commonService = inject(CommonService);
+
+  verPaginaPrincipalClick() {
+    
+  }
 }

@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Dispositivo } from '../models/dispositivo.model';
+import { Injectable, signal } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +7,8 @@ import { Dispositivo } from '../models/dispositivo.model';
 export class CommonService {
 
   listaDispositivos = <any[]>([]);
-  
-  
+  dispositivoSeleccionado: any;
+  editarDispositivo = signal(false);
+  editarDispositivo$ = toObservable(this.editarDispositivo);
+
 }

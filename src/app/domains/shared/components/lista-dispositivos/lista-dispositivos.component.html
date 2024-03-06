@@ -1,18 +1,65 @@
 <div class="flex flex-wrap justify-center items-center gap-4 p-4 bg-gray-800 shadow-xl">
-@for(item of listaDispositivos; track $index){
-<div class="card w-96 bg-gray-600 shadow-xl min-w-97 max-h-96">
-    <figure><img src="{{ item.Imagen }}" alt="{{ item.Nombre }}" class="w-70 h-60"></figure>
-    <div class="card-body">
-        <h2 class="card-title text-center">
-            {{ item.Nombre }}
-        </h2>
-        <div class="card-actions justify-end">
-            @if(item.Estado == "DISPONIBLE"){
-              <div class="badge badge-success">{{ item.Estado }}</div>
-            }
-            <div class="badge badge-outline">{{ item.NumeroSerie }}</div>
+    @if(editado){
+    <div role="alert" class="alert alert-success">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <span>Dispositivo editado correctamente</span>
+    </div>
+    }@else if(eliminado){
+    <div role="alert" class="alert alert-error">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+        <span>Dispositivo eliminado correctamente</span>
+    </div>
+    }
+    @for(item of listaDispositivos; track $index){
+    <div class="card w-96 bg-gray-600 shadow-xl min-w-97 max-h-96">
+        <div class="card-body">
+            <h2 class="card-title text-center">
+                {{ item.Nombre }}
+            </h2>
+            <p class="text-center">
+                {{ item.NumeroSerie }}
+            </p>
+            <div class="card-actions justify-end">
+                <button class="btn btn-secondary" onclick="my_modal_1.showModal()" (click)="enviarDispositivo(item)">
+                    Editar
+                </button>
+                <button class="btn btn-error" (click)="eliminarDispositivo(item.id)">
+                    Eliminar
+                </button>
+            </div>
         </div>
     </div>
+
+    }
 </div>
+@if(click){
+<dialog id="my_modal_1" class="modal">
+    <div class="modal-box">
+        <h2 class="card-title">Editar Dispositivo</h2>
+        <div class="form-control">
+            <label class="label">
+                <span class="label-text">Nombre</span>
+            </label>
+            <input type="text" [value]="dispositivoSeleccionado.Nombre" class="input input-bordered" required #nombre />
+
+        </div>
+        <div class="form-control">
+            <label class="label">
+                <span class="label-text">N&uacute;mero de Serie</span>
+            </label>
+            <input type="text" [value]="dispositivoSeleccionado.NumeroSerie" class="input input-bordered" required
+                #numSerie />
+        </div>
+        <div class="form-control mt-6 flex">
+            <button class="btn btn-primary" type="button" onclick="my_modal_1.close()"
+                (click)="editarDispositivo(nombre.value, numSerie.value)">Editar</button>
+            <button class="btn btn-secondary" onclick="my_modal_1.close()">Cancelar</button>
+        </div>
+    </div>
+</dialog>
 }
-</div>

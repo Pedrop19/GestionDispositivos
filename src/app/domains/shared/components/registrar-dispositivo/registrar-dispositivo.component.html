@@ -1,0 +1,36 @@
+@if(registrado){
+<div role="alert" class="alert alert-success">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+    </svg>
+    <span>Dispositivo registrado correctamente</span>
+</div>
+}
+
+<div class="flex items-center justify-center h-screen">
+
+    <div class="card shrink-0 w-full max-w-2xl shadow-2xl bg-base-300">
+        <div class="card-body">
+            <h2 class="card-title">Registrar Dispositivo</h2>
+            <form class="card-body">
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">Nombre</span>
+                    </label>
+                    <input type="text" placeholder="Ratón - Logitech M100" class="input input-bordered" required
+                        #nombre />
+                </div>
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">N&uacute;mero de Serie</span>
+                    </label>
+                    <input type="text" placeholder="numSerie" class="input input-bordered" required #numSerie />
+                </div>
+                <div class="form-control mt-6">
+                    <button class="btn btn-primary" type="button"
+                        (click)="registrarDispositivo(nombre.value, numSerie.value)">Registrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
